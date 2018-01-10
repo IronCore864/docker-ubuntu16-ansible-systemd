@@ -1,0 +1,23 @@
+---
+driver:
+  name: docker
+  use_sudo: False
+
+provisioner:
+  name: ansible_playbook
+  hosts: test-kitchen
+  ansible_version: latest
+  roles_path: roles
+  group_vars_path: inventories/rel/group_vars
+  ansible_vault_password_file: ./.ansible_vault_pwd.txt
+
+platforms:
+  - name: ubuntu-16.04
+    driver_config:
+      image: ironcore864/ubuntu16-ansible-systemd
+      privileged: true
+      run_command: /sbin/init
+      run_options: --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t
+
+suites:
+  - name: your-suite-here

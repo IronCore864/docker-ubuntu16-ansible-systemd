@@ -1,13 +1,19 @@
-# Ubuntu 16.04 with Ansible installed and systemd enabled, for test-kitchen usage.
+# A docker image based on Ubuntu 16.04
 
-A Docker image based on Ubuntu 16.04, with ansible installed, that runs systemd with a minimal set of services.
+For faster and easier use with test-kitchen
 
-Used to test ansible playbooks/roles that need systemd, useful for test-kitchen automation with docker as backend.
+Changes:
 
-Setup:
+- latest ansible installed, so that when you do `kitchen converge`, you don't waste time installing Ansible
+- systemd enabled, to test playbooks/roles that need it
 
-docker run --rm --privileged -v /:/host ironcore864/ubuntu16-ansible-systemd setup
+Setup for systemd:
+
+    docker run --rm --privileged -v /:/host ironcore864/ubuntu16-ansible-systemd setup
 
 Running:
 
-docker run -d --name systemd --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t ironcore864/ubuntu16-ansible-systemd
+    docker run -d --name systemd --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t ironcore864/ubuntu16-ansible-systemd
+
+See .kitchen.yml for an example
+
