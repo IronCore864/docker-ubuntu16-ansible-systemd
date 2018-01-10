@@ -1,19 +1,19 @@
 FROM ubuntu:16.04
 
-ENV container docker
-
-# ansible
 RUN apt-get update && \
     apt-get install -y sudo openssh-server curl lsb-release && \
     apt-get install -y ansible && \
     apt-get install -y git && \
     curl -L https://omnitruck.chef.io/install.sh | sudo bash
 
+ENV container docker
+
 # Don't start any optional services except for the few we need.
 RUN find /etc/systemd/system \
          /lib/systemd/system \
          -path '*.wants/*' \
          -not -name '*journald*' \
+         -not -name '*ssh*' \
          -not -name '*systemd-tmpfiles*' \
          -not -name '*systemd-user-sessions*' \
          -exec rm \{} \;
