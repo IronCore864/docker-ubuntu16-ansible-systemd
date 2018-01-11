@@ -6,6 +6,7 @@ Changes:
 
 - latest ansible installed, so that when you do `kitchen converge`, you don't waste time installing Ansible
 - systemd enabled, to test playbooks/roles that need it
+- busser/serverspec installed, for faster kitchen usage, to /opt/verifier, so when using this image with kitchen, set `root_path` as `/opt/verifier` for `verifier`, see example included
 
 Setup for systemd:
 
