@@ -17,3 +17,4 @@ $gem install $serverspec_install_args
 for plugin in $plugins; do
   $busser plugin install $plugin
 done
+
