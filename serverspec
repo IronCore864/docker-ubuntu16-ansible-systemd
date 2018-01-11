@@ -1,0 +1,19 @@
+TEST_KITCHEN="1"; export TEST_KITCHEN
+BUSSER_ROOT="/tmp/verifier"; export BUSSER_ROOT
+GEM_HOME="/tmp/verifier/gems"; export GEM_HOME
+GEM_PATH="/tmp/verifier/gems"; export GEM_PATH
+GEM_CACHE="/tmp/verifier/gems/cache"; export GEM_CACHE
+ruby="/opt/chef/embedded/bin/ruby"
+gem="/opt/chef/embedded/bin/gem"
+version="busser"
+gem_install_args="busser --no-rdoc --no-ri --no-format-executable -n /tmp/verifier/bin --no-user-install"
+busser="sudo -E /tmp/verifier/bin/busser"
+plugins="busser-serverspec"
+$gem install $gem_install_args
+
+serverspec_install_args="serverspec --no-rdoc --no-ri --no-format-executable -n /tmp/verifier/bin --no-user-install"
+$gem install $serverspec_install_args
+
+for plugin in $plugins; do
+  $busser plugin install $plugin
+done

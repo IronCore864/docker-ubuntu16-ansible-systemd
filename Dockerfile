@@ -9,6 +9,9 @@ RUN apt-get update && \
     apt-get install -y git && \
     curl -L https://omnitruck.chef.io/install.sh | sudo bash
 
+COPY serverspec .
+RUN ./serverspec
+
 ENV container docker
 
 # Don't start any optional services except for the few we need.
