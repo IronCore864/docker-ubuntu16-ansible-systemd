@@ -18,7 +18,6 @@ platforms:
   - name: ubuntu-16.04
     driver_config:
       image: ironcore864/ubuntu16-ansible-systemd
-      privileged: true
       run_command: /sbin/init
       run_options: --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t
 
