@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y ansible && \
     apt-get install -y git && \
+    apt-get install -y make g++ && \
     curl -L https://www.opscode.com/chef/install.sh | sudo bash
 
 COPY serverspec .
